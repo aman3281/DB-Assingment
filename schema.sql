@@ -1,5 +1,9 @@
-
-CREATE TABLE product_category (
+if(not exists (select * from sys.schemas where name ='systab'))
+Begin 
+exec('create schema systab');
+end
+  
+CREATE TABLE systab.product_category (
   id INT PRIMARY KEY ,
   name VARCHAR(255) NOT NULL,
   description TEXT,
@@ -7,7 +11,7 @@ CREATE TABLE product_category (
   modified_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   deleted_at DATETIME DEFAULT NULL
 );
-CREATE TABLE product_inventory (
+CREATE TABLE systab.product_inventory (
   id INT PRIMARY KEY,
   quantity INT NOT NULL,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -15,7 +19,7 @@ CREATE TABLE product_inventory (
   deleted_at DATETIME DEFAULT NULL
 );
 
-CREATE TABLE discount (
+CREATE TABLE systab.discount (
   id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description TEXT,
@@ -26,7 +30,7 @@ CREATE TABLE discount (
   deleted_at DATETIME DEFAULT NULL
 );
 
-CREATE TABLE product (
+CREATE TABLE systab.product (
   id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description TEXT,
